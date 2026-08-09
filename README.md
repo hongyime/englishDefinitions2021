@@ -25,7 +25,7 @@ This project extracts text from PDF documents, identifies uncommon words by filt
 
 ```bash
 # Clone the repository
-git clone https://github.com/bryanseah234/englishDefinitions2021.git
+git clone https://github.com/theprawnorganisation/englishDefinitions2021.git
 
 # Navigate to project directory
 cd englishDefinitions2021
@@ -59,8 +59,4 @@ See `sampledefinitions.csv` for an example of the output format.
 
 ## License
 
-MIT License
-
----
-
-**Author:** <a href="https://github.com/bryanseah234">bryanseah234</a>
+Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
