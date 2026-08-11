@@ -1,5 +1,10 @@
 # English Definitions Extractor
 
+Live demo: https://hongyime.github.io/englishDefinitions2021/
+
+![Project screenshot](./screenshot.png)
+
+
 A Python tool to extract uncommon English words from PDF files and retrieve their definitions.
 
 ## Description
