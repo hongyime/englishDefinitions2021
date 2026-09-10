@@ -1,0 +1,27 @@
+name: Definitions regression tests
+
+on:
+  push:
+    branches: [main]
+    paths: ['definitions.py', 'tests/**', '.github/workflows/definitions-tests.yml']
+  pull_request:
+    paths: ['definitions.py', 'tests/**', '.github/workflows/definitions-tests.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: definitions-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Test PDF-to-CSV behavior without provider calls
+        run: python -B -m unittest discover -s tests -v

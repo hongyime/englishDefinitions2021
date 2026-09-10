@@ -1,6 +1,8 @@
 # English Definitions Extractor
 
-Live demo: https://hongyime.github.io/englishDefinitions2021/
+Project documentation: https://hongyime.github.io/englishDefinitions2021/
+
+The extractor runs locally with Python; GitHub Pages does not run the PDF processing or dictionary lookups.
 
 ![Project screenshot](./screenshot.png)
 
@@ -30,7 +32,7 @@ This project extracts text from PDF documents, identifies uncommon words by filt
 
 ```bash
 # Clone the repository
-git clone https://github.com/theprawnorganisation/englishDefinitions2021.git
+git clone https://github.com/hongyime/englishDefinitions2021.git
 
 # Navigate to project directory
 cd englishDefinitions2021
@@ -52,6 +54,28 @@ The script will:
 2. Extract and process text from each PDF
 3. Look up definitions for uncommon words
 4. Generate a `definitions_of_words.csv` file with the results
+
+Words are matched without regard to case and counted across all PDFs. Whitespace
+and punctuation separate words; the existing 5–14 letter limit and common-word
+list apply before lookups. Each unique uncommon word gets one lookup per run.
+Repeated words remain in the CSV with their full frequency, with one row for each
+available supported part of speech. If no words have definitions, the CSV still
+contains its header. Running the script replaces that generated CSV; importing
+the module does not run extraction.
+
+PDF processing and the generated CSV are local. The dictionary provider receives
+the words being looked up. Its availability and response format are external
+dependencies; the regression checks below do not verify the live provider.
+
+## Regression checks
+
+```bash
+python -B -m unittest discover -s tests -v
+```
+
+The tests use synthetic PDF text, a fake dictionary and temporary output files.
+They check filtering, spelling, case, counts across documents, empty results and
+CSV output without installing application dependencies or making network requests.
 
 ## Demo
 
