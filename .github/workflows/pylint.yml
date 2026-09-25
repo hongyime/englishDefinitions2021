@@ -22,4 +22,7 @@ jobs:
         pip install pylint pdfminer.six tqdm PyDictionary
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        # .github/scripts/ holds shared CI tooling (e.g. checked-bot-merge.py)
+        # synced from sourcerepo, not application code - excluded from this
+        # app-code style lint like other tooling/vendor dirs.
+        pylint --ignore-paths='^\.github/scripts/' $(git ls-files '*.py')
